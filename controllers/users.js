@@ -1,4 +1,5 @@
-const { Users } = require('../models/users');
+
+const  Users  = require('../models/users');
 const bcrypt= require('bcrypt');
 const signUp= async (req,res)=>{
     try{
@@ -6,7 +7,14 @@ const signUp= async (req,res)=>{
         if(!name||!email||!password||!phoneNumber){
             return res.status(400).json({message:"all fields are required"})
         }
-      bcrypt.hash(password,process.env.SALT_ROUNDS, async (err,hash)=>{
+      const userAlreadyExist= await Users.findOne({where:{
+        email: email
+      }});
+      if(userAlreadyExist){
+        res.status(409).json({message:'User already exist'});
+      }
+      const saltRounds= Number(process.env.SALT_ROUNDS)||10;
+      bcrypt.hash(password,saltRounds, async (err,hash)=>{
         console.log(err);
         const user= await Users.create({name,email,phoneNumber,password: hash});
         res.status(201).json(user);

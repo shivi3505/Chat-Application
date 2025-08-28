@@ -12,7 +12,7 @@ const users= Users.define('users',{
         allowNull:false
     },
     phoneNumber:{
-        type:DataTypes.INTEGER,
+        type:DataTypes.BIGINT,
         allowNull:false,
     },
     password:{

@@ -1,9 +1,13 @@
 const express= require('express');
 const app= express();
 const dotenv= require('dotenv');
+const cors= require('cors')
 dotenv.config();
 const userRoute=require('./routes/users');
 const DB= require('./utils/chatApplicationDB');
+
+app.use(cors());
+app.use(express.json());
 app.use('/user',userRoute);
 
 DB.sync({alter:true})
