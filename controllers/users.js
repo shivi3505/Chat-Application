@@ -26,7 +26,44 @@ const signUp= async (req,res)=>{
     }
 
 }
-
+const login= async (req,res)=>{
+    //const errors={};
+    try{
+    const {email,password} = req.body;
+    const user= await Users.findOne({
+        where:{
+            email:email
+        }
+    })
+ 
+    
+   if(user){
+    const isMatch= await bcrypt.compare(password, user.password);
+    if(isMatch){
+       // errors.password= 'Password is incorrect';
+    const token=  generateAccessToken(user.id);
+        res.status(200).json({token:token});
+      
+    }
+    else{
+        res.status(401).json({message:'User not authorized'});
+    }
+   
+       
+    }else{
+        res.status(404).json({message:'user not found'});
+    }
+    
+    }catch(err){
+      console.log(err);
+       res.status(500).json({message:err.message});
+    }
+    
+}
+function generateAccessToken(id) {
+    return  jwt.sign({userId:id},process.env.SECRET_TOKEN_KEY)
+}
 module.exports={
-    signUp
+    signUp,
+    login
 }
