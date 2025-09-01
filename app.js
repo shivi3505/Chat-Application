@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 app.use('/user',userRoute);
 
-DB.sync({alter:true})
+DB.sync()
 .then(()=>{
     app.listen(process.env.PORT,()=>{
         console.log(`server is running on ${process.env.PORT}`)

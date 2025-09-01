@@ -32,7 +32,8 @@ console.log(user);
 try{
     const addUser= await axios.post(apiURL,user);
     if(addUser.status==201){
-        alert('user register successfully')
+        alert('user register successfully');
+        window.location='../views/login.html'
         signupForm.reset();
         
     }
