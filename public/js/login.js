@@ -15,8 +15,10 @@ loginForm.addEventListener('submit', async (e)=>{
     console.log(userLogin.data);
       //  loginForm.reset();
       //   window.alert('Login Successfully')
+    
       if(userLogin){
-         localStorage.setItem('token',userLogin.data.token)
+         localStorage.setItem('token',userLogin.data.token);
+         
          loginForm.reset();
          alert('Login Successfully')
          window.location.href= './chat.html';

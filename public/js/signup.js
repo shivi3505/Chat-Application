@@ -10,6 +10,7 @@ signupForm.addEventListener('submit',async (e)=>{
     const email= document.getElementById('email').value;
     const password= document.getElementById('password').value;
     const phoneNumber= document.getElementById('phone-number').value;
+    localStorage.setItem('name',name)
     if(!name){
       document.getElementById('name-error').textContent="name is required";
     }

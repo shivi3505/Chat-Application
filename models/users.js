@@ -1,6 +1,5 @@
 const {Sequelize,DataTypes}= require('sequelize');
 const Users= require('../utils/chatApplicationDB');
-const { type } = require('os');
 const users= Users.define('users',{
     name:{
         type:DataTypes.STRING,

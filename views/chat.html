@@ -10,13 +10,23 @@
   <div class="container">
      <div id="chat-screen" class="chat-layout">
        <div class="chat-window">
+        <div>
         <div class="chat-header">Chat App</div>
-        <ul id="users"></ul>
-        <div class="chat-messages" id="messages"></div>
-        
-        <div class="chat-input">
+        <div class="users">
+          <ul id="users-list">
+        </ul>
+        </div>
+        <div class="message-list">
+          <ul id="users-message">
+          
+        </ul>
+        </div>
+        </div>
+       <div class="chat-input">
+         <div class="message-container">
           <input type="text" id="msgInput" placeholder="Type a message...">
-          <button >Send</button>
+          <button onclick="sendMessage()"  >Send</button>
+          </div>
         </div>
       </div>
      </div>
@@ -25,4 +35,6 @@
   
   
 </body>
+ <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="../public/js/chat.js"></script>
 </html>
